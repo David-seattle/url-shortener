@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * JPA entity for reading and writing to the database. Ids are assigned by the database.
+ */
 @Entity
 public class Url {
 

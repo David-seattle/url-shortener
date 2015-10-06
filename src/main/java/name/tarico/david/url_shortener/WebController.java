@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 
+/**
+ * Handles all web requests, and delegates to other services for all but the most trivial of buisness logic.
+ */
 @Controller
 public class WebController {
 
@@ -21,7 +24,7 @@ public class WebController {
     @Autowired
     private UrlRepository urlRepository;
 
-    @Value("${domain.name}")
+    @Value("${domain.name}") //comes from the application.properties
     private String serviceDomainName;
 
     @RequestMapping(value = "/")
@@ -51,6 +54,7 @@ public class WebController {
         try {
             id = IdEncoderDecoder.decode(encodedId);
         } catch (IllegalArgumentException e) {
+            //todo: Currently the landing page isn't doing anything to check for the error code and display a message
             redirectView.setUrl("/?errorCode=1");
             return redirectView;
         }
